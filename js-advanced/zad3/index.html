@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Search in List</title>
+  </head>
+
+  <body>
+    <ul id="towns">
+      <li>Sofia</li>
+      <li>Pleven</li>
+      <li>Varna</li>
+      <li>Plovdiv</li>
+    </ul>
+    <input type="text" id="searchText" />
+    <button onclick="search()">Search</button>
+    <div id="result"></div>
+
+    <script>
+      function search() {
+        const searchText = document
+          .getElementById("searchText")
+          .value.toLowerCase();
+
+        const towns = document.querySelectorAll("#towns li");
+
+        towns.forEach(function (town) {
+          const townText = town.textContent.toLowerCase();
+          const match = townText.includes(searchText);
+
+          if (match) {
+            town.style.fontWeight = "bold";
+          } else {
+            town.style.fontWeight = "normal";
+          }
+        });
+
+        const matchCount = document.querySelectorAll(
+          '#towns li[style*="bold"]',
+        ).length;
+        document.getElementById("result").textContent =
+          "Намерени съвпадения: " + matchCount;
+      }
+    </script>
+  </body>
+</html>
